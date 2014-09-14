@@ -1,7 +1,7 @@
-From 6816e822315d52f31a9ff37d5a2ed0b13f11ee68 Mon Sep 17 00:00:00 2001
+From d8b51efbc77fdc9df6977c03f2e3aeaa73c3796b Mon Sep 17 00:00:00 2001
 From: Chirayu Desai <cdesai@cyanogenmod.org>
 Date: Wed, 13 Nov 2013 12:54:51 -0500
-Subject: [PATCH 3/9] Allow using Classic WebView
+Subject: [PATCH] Allow using Classic WebView
 
 Squashed commit of the following:
 
@@ -28,6 +28,12 @@ Date:   Tue Nov 12 18:41:39 2013 +0530
     Revert "Restore 4 classes that were accidentally deleted"
 
     This reverts commit 328dd7d7059c70b6776c6e29f9ea315f2f8aed3f.
+
+Change-Id: Iba847a04b515cada0eb32cc86026b60469108d80
+
+Revert "Remove old WebView classes from zygote preload list."
+
+This reverts commit 6067d1a3c7033f6714a60ac02a6b08d6568fe217.
 
 Change-Id: Iba847a04b515cada0eb32cc86026b60469108d80
 ---
@@ -84,7 +90,8 @@ Change-Id: Iba847a04b515cada0eb32cc86026b60469108d80
  core/java/android/webkit/ZoomControlExternal.java  |  159 +
  core/java/android/webkit/ZoomManager.java          | 1263 +++
  .../com/android/internal/app/ProcessStats.java     |    2 +-
- 53 files changed, 29119 insertions(+), 14 deletions(-)
+ preloaded-classes                                  |   38 +
+ 54 files changed, 29157 insertions(+), 14 deletions(-)
  create mode 100644 core/java/android/webkit/AccessibilityInjector.java
  create mode 100644 core/java/android/webkit/AccessibilityInjectorFallback.java
  create mode 100644 core/java/android/webkit/AutoCompletePopup.java
@@ -5396,7 +5403,7 @@ diff --git a/core/java/android/webkit/CookieSyncManager.java b/core/java/android
 index 13aa43f..154a290 100644
 --- a/core/java/android/webkit/CookieSyncManager.java
 +++ b/core/java/android/webkit/CookieSyncManager.java
-@@ -89,6 +89,10 @@ public final class CookieSyncManager extends WebSyncManager {
+@@ -89,6 +89,10 @@ public static synchronized CookieSyncManager createInstance(Context context) {
          if (context == null) {
              throw new IllegalArgumentException("Invalid context argument");
          }
@@ -5411,7 +5418,7 @@ diff --git a/core/java/android/webkit/DebugFlags.java b/core/java/android/webkit
 index b5ca8c1..524f610 100644
 --- a/core/java/android/webkit/DebugFlags.java
 +++ b/core/java/android/webkit/DebugFlags.java
-@@ -35,4 +35,22 @@ public class DebugFlags {
+@@ -35,4 +35,22 @@
      public static final boolean URL_UTIL = false;
      public static final boolean WEB_SYNC_MANAGER = false;
  
@@ -26628,7 +26635,7 @@ diff --git a/core/java/android/webkit/WebViewFactory.java b/core/java/android/we
 index b9131bf..cb08cd5 100644
 --- a/core/java/android/webkit/WebViewFactory.java
 +++ b/core/java/android/webkit/WebViewFactory.java
-@@ -29,6 +29,12 @@ import android.util.Log;
+@@ -29,6 +29,12 @@
   */
  public final class WebViewFactory {
  
@@ -26641,7 +26648,7 @@ index b9131bf..cb08cd5 100644
      private static final String CHROMIUM_WEBVIEW_FACTORY =
              "com.android.webview.chromium.WebViewChromiumFactoryProvider";
  
-@@ -52,32 +58,33 @@ public final class WebViewFactory {
+@@ -52,32 +58,33 @@
      private static WebViewFactoryProvider sProviderInstance;
      private static final Object sProviderLock = new Object();
  
@@ -26687,7 +26694,7 @@ index b9131bf..cb08cd5 100644
              if (sProviderInstance != null) return sProviderInstance;
  
              Class<WebViewFactoryProvider> providerClass;
-@@ -111,7 +118,25 @@ public final class WebViewFactory {
+@@ -111,7 +118,25 @@ static WebViewFactoryProvider getProvider() {
          }
      }
  
@@ -29624,7 +29631,7 @@ diff --git a/core/java/com/android/internal/app/ProcessStats.java b/core/java/co
 index 0cad33c..c4a4962 100644
 --- a/core/java/com/android/internal/app/ProcessStats.java
 +++ b/core/java/com/android/internal/app/ProcessStats.java
-@@ -1054,7 +1054,7 @@ public final class ProcessStats implements Parcelable {
+@@ -1054,7 +1054,7 @@ public boolean evaluateSystemProperties(boolean update) {
                  mRuntime = runtime;
              }
          }
@@ -29633,6 +29640,76 @@ index 0cad33c..c4a4962 100644
          if (!Objects.equals(webview, mWebView)) {
              changed = true;
              if (update) {
+diff --git a/preloaded-classes b/preloaded-classes
+index 467da25..d161bc1 100644
+--- a/preloaded-classes
++++ b/preloaded-classes
+@@ -1202,12 +1202,29 @@ android.view.inputmethod.InputMethodManager$ImeInputEventSender
+ android.view.inputmethod.InputMethodManager$PendingEvent
+ android.view.textservice.SpellCheckerSubtype
+ android.view.textservice.SpellCheckerSubtype$1
++android.webkit.BrowserFrame
++android.webkit.BrowserFrame$ConfigCallback
++android.webkit.CallbackProxy
+ android.webkit.CookieManager
+ android.webkit.CookieSyncManager
++android.webkit.DeviceMotionAndOrientationManager
+ android.webkit.GeolocationPermissions
++android.webkit.HTML5Audio
++android.webkit.HTML5VideoViewProxy
++android.webkit.JWebCoreJavaBridge
+ android.webkit.JavascriptInterface
++android.webkit.L10nUtils
++android.webkit.MockGeolocation
++android.webkit.OverScrollGlow
++android.webkit.PluginManager
++android.webkit.QuadF
+ android.webkit.URLUtil
++android.webkit.ViewManager
++android.webkit.ViewManager$2
++android.webkit.ViewManager$3
++android.webkit.ViewStateSerializer
+ android.webkit.WebBackForwardList
++android.webkit.WebCoreThreadWatchdog
+ android.webkit.WebHistoryItem
+ android.webkit.WebIconDatabase
+ android.webkit.WebSettings
+@@ -1221,14 +1238,35 @@ android.webkit.WebSyncManager$SyncHandler
+ android.webkit.WebView
+ android.webkit.WebView$PrivateAccess
+ android.webkit.WebViewClient
++android.webkit.WebViewCore$AutoFillData
++android.webkit.WebViewCore$DrawData
++android.webkit.WebViewCore$EventHub
++android.webkit.WebViewCore$EventHub$1
++android.webkit.WebViewCore$GetUrlData
++android.webkit.WebViewCore$TextFieldInitData
++android.webkit.WebViewCore$ViewState
++android.webkit.WebViewCore$WebCoreThread
++android.webkit.WebViewCore$WebCoreThread$1
+ android.webkit.WebViewDatabase
+ android.webkit.WebViewFactory
+ android.webkit.WebViewFactory$Preloader
+ android.webkit.WebViewFactoryProvider
+ android.webkit.WebViewFactoryProvider$Statics
++android.webkit.WebViewInputDispatcher
++android.webkit.WebViewInputDispatcher$DispatchEventQueue
++android.webkit.WebViewInputDispatcher$TouchStream
++android.webkit.WebViewInputDispatcher$UiCallbacks
++android.webkit.WebViewInputDispatcher$UiHandler
++android.webkit.WebViewInputDispatcher$WebKitCallbacks
++android.webkit.WebViewInputDispatcher$WebKitHandler
+ android.webkit.WebViewProvider
+ android.webkit.WebViewProvider$ScrollDelegate
+ android.webkit.WebViewProvider$ViewDelegate
++android.webkit.ZoomControlBase
++android.webkit.ZoomControlExternal
++android.webkit.ZoomManager
++android.webkit.ZoomManager$FocusMovementQueue
++android.webkit.ZoomManager$PostScale
+ android.widget.AbsListView
+ android.widget.AbsListView$1
+ android.widget.AbsListView$AdapterDataSetObserver
 -- 
-1.7.9.5
+1.8.5.1
 

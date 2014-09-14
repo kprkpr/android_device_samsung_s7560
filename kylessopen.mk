@@ -20,7 +20,7 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    btmac
+    bluetooth
 
 # Device
 PRODUCT_PACKAGES += \
@@ -40,9 +40,15 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm7x27a \
     libtilerenderer
     
+# Torch
+PRODUCT_PACKAGES += Torch
+    
 # Lights
-PRODUCT_PACKAGES += \
-    lights.msm7x27a
+#PRODUCT_PACKAGES += \
+#    lights.msm7x27a
+
+PRODUCT_COPY_FILES += \
+    device/samsung/kylessopen/prebuilt/system/lib/lights.msm7627a.so:system/lib/hw/lights.msm7627a.so
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -69,7 +75,7 @@ PRODUCT_COPY_FILES += \
     
 # Classic Webview
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.webview.provider=classic  
+    persist.webview.provider=classic
     
 #Optimization for low-memory devices
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -77,30 +83,45 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Hardware features available on this device
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+    device/samsung/kylessopen/dataxml/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    device/samsung/kylessopen/dataxml/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    device/samsung/kylessopen/dataxml/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    device/samsung/kylessopen/dataxml/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 # Recovery
 PRODUCT_COPY_FILES += \
     device/samsung/kylessopen/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/samsung/kylessopen/recovery/postrecoveryboot.sh:recovery/system/bin/postrecoveryboot.sh
-    
 
+# FM
+PRODUCT_COPY_FILES += \
+    device/samsung/kylessopen/prebuilt/system/etc/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh
+
+# FM Config
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.fm.analogpath.supported=true \
+    ro.fm.transmitter=false \
+    ro.fm.mulinst.recording.support=false
+    
 # Enable repeatable keys in CWM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cwm.enable_key_repeat=true
 
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+PRODUCT_PROPERTY_OVERRIDES += \
+dalvik.vm.heapstartsize=5m \
+dalvik.vm.heapgrowthlimit=48m \
+dalvik.vm.heapsize=128m
+
+
+
 $(call inherit-product, build/target/product/full.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0

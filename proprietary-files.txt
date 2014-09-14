@@ -102,6 +102,9 @@ lib/liboncrpc.so
 lib/libpbmlib.so
 lib/libqdi.so
 lib/libqdp.so
+lib/libQmageDecoder.so 
+bin/lpmkey 
+bin/playlpm 
 lib/libqmiservices.so
 lib/libqmi.so
 lib/libqueue.so
@@ -110,6 +113,7 @@ lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 lib/libwms.so
 lib/libwmsts.so
+lib/libfmradio_jni.so
 
 # Sensors
 lib/libacdapi_azi.so
@@ -119,6 +123,6 @@ lib/hw/sensors.default.so
 bin/hostapd
 etc/firmware/ath6k/AR6003/hw2.1.1/athtcmd_ram.bin
 etc/firmware/ath6k/AR6003/hw2.1.1/bdata.bin
-etc/firmware/ath6k/AR6003/hw2.1.1/fw-3.bin
+etc/firmware/ath6k/AR6003/hw2.1.1/fw-4.bin
 lib/modules/ath6kl_sdio.ko
 lib/modules/cfg80211.ko

@@ -26,7 +26,8 @@ MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
 
 PRODUCT_COPY_FILES += \\
     vendor/samsung/kylessopen/proprietary/lib/liboncrpc.so:obj/lib/liboncrpc.so \\
-    vendor/samsung/kylessopen/proprietary/lib/libnv.so:obj/lib/libnv.so
+    vendor/samsung/kylessopen/proprietary/lib/libnv.so:obj/lib/libnv.so \\
+    device/samsung/kylessopen/prebuilt/system/lib/liba2dp.so:obj/lib/liba2dp.so
 
 PRODUCT_COPY_FILES += \\
 EOF

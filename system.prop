@@ -5,6 +5,9 @@
 # Bluetooth
 ro.bt.bdaddr_path=/data/misc/bluedroid/bdaddr
 
+# Call Recording
+persist.call_recording.enabled=1
+
 # Dalvik
 dalvik.vm.checkjni=0
 dalvik.vm.dexopt-data-only=1
@@ -34,7 +37,7 @@ rild.libargs=-d /dev/smd0
 ril.subscription.types=NV,RUIM
 #ro.telephony.ril_class=SamsungRIL
 ro.telephony.call_ring.multiple=false
-ro.telephony.call_ring.delay=3000
+ro.telephony.call_ring.delay=1000
 
 # USB
 persist.sys.usb.config=mass_storage,adb
