@@ -41,7 +41,7 @@ TARGET_KERNEL_CONFIG := kyle02_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/kylessopen
 TARGET_BOOTLOADER_BOARD_NAME := kylessopen
 BOARD_KERNEL_CMDLINE := androidboot.hardware=kylessopen
-BOARD_KERNEL_BASE := 0x00200000
+BOARD_KERNEL_BASE := 0x0200000
 BOARD_KERNEL_PAGESIZE := 4096
 
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/kylessopen/include
@@ -142,13 +142,13 @@ BOARD_BATTERY_DEVICE_NAME := "battery"
 
 # Recovery
 TARGET_RECOVERY_INITRC := device/samsung/kylessopen/recovery/init.rc
-TARGET_RECOVERY_FSTAB := device/samsung/kylessopen/ramdisk/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/samsung/kylessopen/recovery.fstab
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/kylessopen/recovery/recovery_keys.c
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun%d/file"
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_HAS_SDCARD_INTERNAL := trues
+BOARD_HAS_SDCARD_INTERNAL := true
 BOARD_HAS_DOWNLOAD_MODE := true
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true

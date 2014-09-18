@@ -20,10 +20,11 @@ on init
 
 on emmc-fs
     wait /dev/block/mmcblk0p11
-    wait /dev/block/mmcblk0p12
+    wait /dev/block/mmcblk0p13
+    wait /dev/block/mmcblk0p16
     wait /dev/block/mmcblk0p17
-    wait /dev/block/mmcblk0p18
-    wait /dev/block/mmcblk0p20
+    wait /dev/block/mmcblk0p19
+    wait /dev/block/mmcblk0p25
     exec check_emmc_checksum
 
 on boot

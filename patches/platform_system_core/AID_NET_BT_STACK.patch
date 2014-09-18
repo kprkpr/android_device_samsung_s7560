@@ -1,0 +1,18 @@
+--- android_filesystem_config.h	2014-09-15 16:37:35.493071838 +0200
++++ /home/kprkpr/android/cm9samsung/system/core/include/private/android_filesystem_config.h	2014-09-15 16:33:44.205073016 +0200
+@@ -76,6 +76,7 @@
+ #define AID_NET_BW_STATS  3006  /* read bandwidth statistics */
+ #define AID_NET_BW_ACCT   3007  /* change bandwidth statistics accounting */
+ #define AID_QCOM_ONCRPC   3008  /* can read/write /dev/oncrpc files */
++#define AID_NET_BT_STACK  3009  /* bluetooth: access config files */
+ 
+ #if defined(MOTOROLA_UIDS)
+ #define AID_MOT_OSH       5000  /* OSH */
+@@ -130,6 +131,7 @@
+     { "diag",      AID_DIAG, },
+     { "net_bt_admin", AID_NET_BT_ADMIN, },
+     { "net_bt",    AID_NET_BT, },
++    { "net_bw_stack", AID_NET_BT_STACK, },
+     { "sdcard_rw", AID_SDCARD_RW, },
+     { "media_rw",  AID_MEDIA_RW, },
+     { "vpn",       AID_VPN, },

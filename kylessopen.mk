@@ -20,7 +20,7 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    bluetooth
+    btmac
 
 # Device
 PRODUCT_PACKAGES += \
@@ -46,7 +46,7 @@ PRODUCT_PACKAGES += Torch
 # Lights
 #PRODUCT_PACKAGES += \
 #    lights.msm7x27a
-
+#Lights copy
 PRODUCT_COPY_FILES += \
     device/samsung/kylessopen/prebuilt/system/lib/lights.msm7627a.so:system/lib/hw/lights.msm7627a.so
 
@@ -77,10 +77,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.webview.provider=classic
     
-#Optimization for low-memory devices
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.low_ram=true 
-
 # Hardware features available on this device
 PRODUCT_COPY_FILES += \
     device/samsung/kylessopen/dataxml/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
@@ -128,4 +124,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := full_kylessopen
 PRODUCT_DEVICE := kylessopen
 PRODUCT_MANUFACTURER := samsung
-PRODUCT_MODEL := GT-S7560M
+PRODUCT_MODEL := GT-S7560
